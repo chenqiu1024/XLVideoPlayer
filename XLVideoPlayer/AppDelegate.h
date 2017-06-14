@@ -15,6 +15,8 @@
 
 + (instancetype) sharedApp;
 
++ (NSString*) ensureDirectory:(NSString*)directoryPathUnderDocument;
+
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) GPUImageVideoCamera* videoCamera;

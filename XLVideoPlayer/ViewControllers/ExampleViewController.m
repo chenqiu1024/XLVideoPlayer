@@ -8,14 +8,30 @@
 //  博客：http://www.jianshu.com/users/edad244257e2/latest_articles
 
 #import "ExampleViewController.h"
+#import "AppDelegate.h"
 #import "VideoDetailViewController.h"
 #import "XLVideoCell.h"
 #import "XLVideoPlayer.h"
 #import "XLVideoItem.h"
 #import "AFNetworking.h"
 #import "MJExtension.h"
+#import <AVFoundation/AVFoundation.h>
 
 #define videoListUrl @"http://c.3g.163.com/nc/video/list/VAP4BFR16/y/0-10.html"
+
+UIImage* getVideoImage(NSString* videoURL, float time)
+{
+    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:[NSURL fileURLWithPath:videoURL] options:nil];
+    AVAssetImageGenerator *gen = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+    gen.appliesPreferredTrackTransform = YES;
+    CMTime ctime = CMTimeMakeWithSeconds(time, 600);
+    NSError *error = nil;
+    CMTime actualTime;
+    CGImageRef image = [gen copyCGImageAtTime:ctime actualTime:&actualTime error:&error];
+    UIImage *thumb = [[UIImage alloc] initWithCGImage:image];
+    CGImageRelease(image);
+    return thumb;
+}
 
 @interface ExampleViewController () <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate> {
     NSIndexPath *_indexPath;
@@ -73,7 +89,7 @@
 #pragma mark - network
 
 - (void)fetchVideoListData {
-    
+    /*
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager GET:videoListUrl parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
 //        NSLog(@"%@", responseObject);
@@ -85,6 +101,35 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", error);
     }];
+    /*/
+    NSString* docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSFileManager* fm = [NSFileManager defaultManager];
+    NSDirectoryEnumerator* dirEnum = [fm enumeratorAtPath:docPath];
+    NSString* thumbnailDirectoryPath = [AppDelegate ensureDirectory:@"thumbnail"];
+    for (NSString* path in dirEnum)
+    {
+        if (path.pathComponents.count > 1)
+            continue;
+        
+        NSString* extName = [[path pathExtension] lowercaseString];
+        if (![extName isEqualToString:@"mp4"] && ![extName isEqualToString:@"avi"] && ![extName isEqualToString:@"mov"] && ![extName isEqualToString:@"m4v"] && ![extName isEqualToString:@"mkv"])
+            continue;
+        
+        XLVideoItem* videoItem = [[XLVideoItem alloc] init];
+        videoItem.mp4_url = [docPath stringByAppendingPathComponent:path];
+        videoItem.title = [path lastPathComponent];
+        NSString* thumbnailPath = [[thumbnailDirectoryPath stringByAppendingPathComponent:path] stringByAppendingPathExtension:@"png"];
+        if (![fm fileExistsAtPath:thumbnailPath])
+        {
+            UIImage* thumbnail = getVideoImage(videoItem.mp4_url, 0.5f);
+            NSData* thumbnailData = UIImagePNGRepresentation(thumbnail);
+            [thumbnailData writeToFile:thumbnailPath atomically:YES];
+        }
+        videoItem.cover = [NSString stringWithFormat:@"file://%@", thumbnailPath];
+        [self.videoArray addObject:videoItem];
+    }
+    [self.exampleTableView reloadData];
+    //*/
 }
 
 - (void)showVideoPlayer:(UITapGestureRecognizer *)tapGesture {

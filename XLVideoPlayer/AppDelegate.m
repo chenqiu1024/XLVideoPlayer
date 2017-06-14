@@ -27,6 +27,19 @@ static AppDelegate* g_instance = nil;
     return g_instance;
 }
 
++ (NSString*) ensureDirectory:(NSString*)directoryPathUnderDocument {
+    NSString* docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSString* directoryPath = [docPath stringByAppendingPathComponent:directoryPathUnderDocument];
+    NSFileManager* fm = [NSFileManager defaultManager];
+    NSError* error = nil;
+    BOOL isDirectory = NO;
+    if (![fm fileExistsAtPath:directoryPath isDirectory:&isDirectory] || !isDirectory)
+    {
+        [fm createDirectoryAtPath:directoryPath withIntermediateDirectories:YES attributes:nil error:&error];
+    }
+    return directoryPath;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     g_instance = self;
@@ -98,10 +111,12 @@ static AppDelegate* g_instance = nil;
     self.videoCamera.horizontallyMirrorRearFacingCamera = NO;
     [self.videoCamera addTarget:self.filter];
     
+    NSString* recordPath = [self.class ensureDirectory:@"rec"];
+    
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"yyyyMMdd_hhmmss";
     NSString* fileName = [NSString stringWithFormat:@"MOV_%@.mp4", [formatter stringFromDate:[NSDate date]]];
-    NSString* pathToMovie = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:fileName];
+    NSString* pathToMovie = [recordPath stringByAppendingPathComponent:fileName];
     unlink([pathToMovie UTF8String]); // If a file already exists, AVAssetWriter won't let you record new frames, so delete the old movie
     NSURL *movieURL = [NSURL fileURLWithPath:pathToMovie];
     GPUImageMovieWriter* movieWriter = [[GPUImageMovieWriter alloc] initWithMovieURL:movieURL size:CGSizeMake(480.0, 640.0)];
