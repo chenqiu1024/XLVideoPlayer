@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		521EFFD81EF16AAD00613015 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 521EFFCF1EF159EB00613015 /* libGPUImage.a */; };
 		EE52FCF71851D31AC776D14A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C1917B6C3CFD4EC8BD92887 /* libPods.a */; };
 		FD0CBDED1CAE1E9A009B012E /* ImageResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FD0CBDEC1CAE1E9A009B012E /* ImageResources.bundle */; };
 		FD4ABC521CA2AD62003BD910 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4ABC511CA2AD62003BD910 /* main.m */; };
@@ -28,6 +29,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		521EFFCE1EF159EB00613015 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 521EFFC81EF159EA00613015 /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BCF1A33414DDB1EC00852800;
+			remoteInfo = GPUImage;
+		};
+		521EFFD01EF159EB00613015 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 521EFFC81EF159EA00613015 /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BCE209E51943F20C002FEED8;
+			remoteInfo = GPUImageFramework;
+		};
+		521EFFD51EF166AA00613015 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 521EFFC81EF159EA00613015 /* GPUImage.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BCE209E41943F20C002FEED8;
+			remoteInfo = GPUImageFramework;
+		};
 		FD4ABC671CA2AD62003BD910 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FD4ABC451CA2AD62003BD910 /* Project object */;
@@ -47,6 +69,7 @@
 /* Begin PBXFileReference section */
 		1C1917B6C3CFD4EC8BD92887 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		437BA5872AAC2254AC079B9A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		521EFFC81EF159EA00613015 /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = ../GPUImage/framework/GPUImage.xcodeproj; sourceTree = "<group>"; };
 		AF31730470DA2F862EA11E25 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FD0CBDEC1CAE1E9A009B012E /* ImageResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ImageResources.bundle; sourceTree = "<group>"; };
 		FD4ABC4D1CA2AD62003BD910 /* XLVideoPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XLVideoPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				521EFFD81EF16AAD00613015 /* libGPUImage.a in Frameworks */,
 				EE52FCF71851D31AC776D14A /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -115,6 +139,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		521EFFC91EF159EA00613015 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				521EFFCF1EF159EB00613015 /* libGPUImage.a */,
+				521EFFD11EF159EB00613015 /* GPUImage.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		69632851BF8440090BA31F09 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +160,7 @@
 		FD4ABC441CA2AD62003BD910 = {
 			isa = PBXGroup;
 			children = (
+				521EFFC81EF159EA00613015 /* GPUImage.xcodeproj */,
 				FD4ABC4F1CA2AD62003BD910 /* XLVideoPlayer */,
 				FD4ABC691CA2AD62003BD910 /* XLVideoPlayerTests */,
 				FD4ABC741CA2AD62003BD910 /* XLVideoPlayerUITests */,
@@ -260,6 +294,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				521EFFD61EF166AA00613015 /* PBXTargetDependency */,
 			);
 			name = XLVideoPlayer;
 			productName = XLVideoPlayer;
@@ -313,7 +348,7 @@
 				TargetAttributes = {
 					FD4ABC4C1CA2AD62003BD910 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 6J2XGE456D;
+						DevelopmentTeam = QBAB3CS86A;
 					};
 					FD4ABC651CA2AD62003BD910 = {
 						CreatedOnToolsVersion = 7.1;
@@ -336,6 +371,12 @@
 			mainGroup = FD4ABC441CA2AD62003BD910;
 			productRefGroup = FD4ABC4E1CA2AD62003BD910 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 521EFFC91EF159EA00613015 /* Products */;
+					ProjectRef = 521EFFC81EF159EA00613015 /* GPUImage.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				FD4ABC4C1CA2AD62003BD910 /* XLVideoPlayer */,
@@ -344,6 +385,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		521EFFCF1EF159EB00613015 /* libGPUImage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libGPUImage.a;
+			remoteRef = 521EFFCE1EF159EB00613015 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		521EFFD11EF159EB00613015 /* GPUImage.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GPUImage.framework;
+			remoteRef = 521EFFD01EF159EB00613015 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		FD4ABC4B1CA2AD62003BD910 /* Resources */ = {
@@ -459,6 +517,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		521EFFD61EF166AA00613015 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GPUImageFramework;
+			targetProxy = 521EFFD51EF166AA00613015 /* PBXContainerItemProxy */;
+		};
 		FD4ABC681CA2AD62003BD910 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = FD4ABC4C1CA2AD62003BD910 /* XLVideoPlayer */;
@@ -577,6 +640,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = QBAB3CS86A;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Public/MJExtension\"",
+					"\"${PODS_ROOT}/Headers/Public/SDWebImage\"",
+					"${SRCROOT}/../GPUImage/framework/**",
+				);
 				INFOPLIST_FILE = XLVideoPlayer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -592,6 +664,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = QBAB3CS86A;
+				HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/../GPUImage/framework/**",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = XLVideoPlayer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
